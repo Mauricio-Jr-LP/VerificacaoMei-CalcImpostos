@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Infoprodutos</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/style.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+
+        <div style="display:flex; justify-content: center; align-items: center; height: 100vh; width:100%;">
+            <div class="formulario">
+            
+                <div class="headerForm">
+                    <a href="index.html"><h2>Co-Produtor - MEI</h2></a>
+                </div>
+
+                <form id="formulario">
+
+                    <div class="formItem">
+                        <label for="faturamento">Faturamento Mensal</label>
+                        <input type="text" id="faturamento">
+                    </div>
+
+                    <input type="submit" onclick="abreModal()" class="btn btn-calc"  value="Calcular">
+                </form>
+
+           
+  
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Co-Produtor - MEI</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div id="faturamentoModalDiv">
+                                <h1 style="font-weight: bold;" class="faturamentoModalTexto">Faturamento: <span id="faturamentoModal" style="color: rgb(0, 0, 0)" name="resultado">000</span></h1>
+                                <h1 class="faturamentoModalTexto">
+                                    De acordo com o seu faturamento em <span id="mesesModal" name="resultado">000</span> meses
+                                    seu faturamento total será de <span id="acumuModal" name="resultado">000</span> possibilitando que a empresa continue no MEI
+                                </h1>
+                                <h1 id="passouLimite" class="faturamentoModalTexto" style="display: none !important;">
+                                    Está confirmado que seu faturamento foi superior ao limite? Então vamos entender os próximos passos. Agora você precisará fazer o 
+                                    desenquadramento do SIMEI. É muito importante citar que a Receita Federal não vai te comunicar sobre o excesso de faturamento. 
+                                    E caso isso não seja feito, você pode ser desenquadrado de ofício pela Receita Federal, sem aviso prévio. Não queremos isso, não é mesmo?
+                                </h1>
+                                
+                            </div>
+                            
+                            <div class="modal-footer">
+                                <button type="button" id="btn-calc" class="btn btn-primary" data-dismiss="modal">Entendido</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Modal -->
+                 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true" style="background: rgb(155, 17, 30)">
+                    <h1 class="fa-blink" style="text-align: center; margin-top: 90px; margin-bottom: -140px; color: white;">ATENÇÃO</h1>
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content-acima">
+                            
+                            <div class="modal-header">
+                                <h5 class="modal-title-acima" id="exampleModalLabel" style="color: white;">Co-Produtor - MEI</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span style="color: white;" aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div id="faturamentoModalDiv" style="background: white;">
+                                    <h1 style="font-weight: bold;" class="faturamentoModalTexto">Faturamento: <span id="faturamentoModal2" style="color: rgb(155, 17, 30)" name="resultado">000</span></h1>
+                                    <h1 class="faturamentoModalTexto">
+                                        De acordo com o seu faturamento em <span id="mesesModal2" name="resultado">000</span> meses
+                                        seu faturamento total será de <span id="acumuModal2" name="resultado">000</span> impossibilitando que a empresa continue no MEI
+                                    </h1>
+                                    <h1 id="passouLimite" class="faturamentoModalTexto">
+                                        Está confirmado que seu faturamento foi superior ao limite? Então vamos entender os próximos passos. Agora você precisará fazer o 
+                                        desenquadramento do SIMEI. É muito importante citar que a Receita Federal não vai te comunicar sobre o excesso de faturamento. 
+                                        E caso isso não seja feito, você pode ser desenquadrado de ofício pela Receita Federal, sem aviso prévio. Não queremos isso, não é mesmo?
+                                    </h1>
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" style="color: rgb(155, 17, 30); background-color: white; border-color: white; " data-dismiss="modal">Entendido</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+            <script>
+                
+                var form = document.getElementById('formulario');
+                var faturamento = document.getElementById('faturamento');
+            
+                form.addEventListener('submit', function(e) {
+
+                    var meiLimiteUs = 81000;
+                    var meiBr = parseFloat(meiLimiteUs);
+                    const strNum = faturamento.value.replace(/[^0-9]/g, '')
+                    var fatBr = strNum;
+                    fatBr = parseFloat(fatBr);
+
+                    vezes = 1;
+                    fatAcu = fatBr;
+                    while(fatAcu < meiBr && vezes <= 11)
+                    {
+                        if(fatAcu < meiBr)
+                        {
+                            vezes++;
+                            fatAcu = fatAcu + fatBr;
+                        }
+                        else
+                        break;
+                        
+                    }
+                    
+                    if(fatBr <= 4999)
+                    {
+                        var faturamentoReal = fatBr.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+                        var faturamentoAcuReal = fatAcu.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+
+                        document.getElementById("faturamentoModal").innerHTML = faturamentoReal;
+                        document.getElementById("mesesModal").innerHTML = vezes;
+                        document.getElementById("acumuModal").innerHTML = faturamentoAcuReal;
+                        
+                        let el = document.getElementById('exampleModal');
+                        let el2 = document.getElementById('btn-calc');
+                        el.style.background = 'rgba(61, 214, 64, 0.8)';
+                        el2.style.background = 'rgba(61, 214, 64, 1)';
+                        
+                        $("#exampleModal").modal({
+                            show: true
+                        });
+                        
+                    }
+                    if(fatBr >= 5000 && fatBr <= 6750)
+                    {
+                        var faturamentoReal = fatBr.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+                        var faturamentoAcuReal = fatAcu.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+
+                        document.getElementById("faturamentoModal").innerHTML = faturamentoReal;
+                        document.getElementById("mesesModal").innerHTML = vezes;
+                        document.getElementById("acumuModal").innerHTML = faturamentoAcuReal;
+                        
+                        let el = document.getElementById('exampleModal');
+                        let el2 = document.getElementById('btn-calc');
+                        el.style.background = 'rgba(250, 217, 16, 0.8)';
+                        el2.style.background = 'rgb(250, 217, 16)';
+                        
+                        $("#exampleModal").modal({
+                            show: true
+                        });
+                        
+                    }
+                    if(fatBr >= 6751 && fatBr <= 80999)
+                    {
+                        var faturamentoReal = fatBr.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+                        var faturamentoAcuReal = fatAcu.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+                        document.getElementById("faturamentoModal2").innerHTML = faturamentoReal;
+                        document.getElementById("mesesModal2").innerHTML = vezes;
+                        document.getElementById("acumuModal2").innerHTML = faturamentoAcuReal;
+
+                        $("#exampleModal2").modal({
+                            show: true
+                        });
+                        
+                    }
+                    if(fatBr >= meiBr)
+                    {
+                        var faturamentoReal = fatBr.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+                        var faturamentoAcuReal = fatAcu.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+                        document.getElementById("faturamentoModal2").innerHTML = faturamentoReal;
+
+                        $("#exampleModal2").modal({
+                            show: true
+                        });
+                    }
+                    if(fatBr == meiBr)
+                    fatBr;
+                    
+                    
+                    //alert(vezes);
+                    //alert(fatAcu);
+                    e.preventDefault();
+                });
+
+            </script>
+    </body>
+
+</html>
+

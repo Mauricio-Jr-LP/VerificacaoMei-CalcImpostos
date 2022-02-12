@@ -1,0 +1,248 @@
+/*scroll suave na pagina*/
+.html
+{
+    scroll-behavior: smooth;
+}
+
+/*zerando as propriedades*/
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+body
+{
+    display: flex;
+    align-items: center;
+}
+a{
+    text-decoration: none;
+}
+.home
+{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.esquerda
+{
+    width: 50%;
+    height: 50vh;
+    background-color: #3575E8;
+    margin: 10px;
+    border-radius: 30px;
+    box-shadow: 7px 30px 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.pergunta h2
+{
+    width: 100%;
+    font-size: 40px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 50px;
+}
+.saberComo{
+    width: 300px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #3575E8;
+}
+.main
+{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+.header{
+    margin: 30px;
+    padding: 30px;
+    border-radius: 30px;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    color: #3575E8;
+    font-size: 30px;
+    font-weight: 600;
+}
+.regimes
+{
+    width: 80%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(3,1fr);
+}
+.regime
+{
+    margin: 30px;
+    padding: 30px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    color: #3575E8;
+    font-size: 30px;
+    font-weight: 600;
+}
+.regime:hover
+{
+    background-color: #3575E8;
+    box-shadow: 0 7px 25px #1e4285a1;
+    color: white;
+}
+.formulario
+{
+    margin: 30px;
+    padding: 30px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 7px 25px rgb(53, 117, 232, 0.8);
+    color: #3575E8;
+    font-size: 30px;
+    font-weight: 600;
+    width: 40%;
+    height: 30vh;
+}
+.form-mei
+{
+    margin: 200px 200px 200px 200px;
+    width: 50%;
+}
+.headerForm
+{
+    display: flex;
+    justify-content: center;
+}
+.formItem
+{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.formItem label
+{
+    margin-right: 10px;
+}
+.formItem input[type=text]
+{
+    border-radius: 10px;
+    border: 1px solid gray;
+    padding: 5px;
+    font-size: 1.5rem;
+}
+.btn-calc
+{
+    background-color: #3575E8;
+    color: white;
+}
+#faturamentoModalDiv
+{
+    padding: 25px;
+}
+.faturamentoModalTexto 
+{
+    color: black;
+    font-size: 1.5rem;
+}
+.faturamentoModalTexto span
+{
+    color: #000;
+    font-weight: normal;
+}
+.impostoSpan span
+{
+    color: rgb(155, 17, 30);
+}
+.modal-content-acima
+{
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: rgb(155, 17, 30);
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 0.3rem;
+    outline: 0;
+}
+modal-title-acima h5{
+    color: white;
+}
+
+
+@keyframes fa-blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 0; }
+}
+.fa-blink {
+  -webkit-animation: fa-blink .75s linear infinite;
+  -moz-animation: fa-blink .75s linear infinite;
+  -ms-animation: fa-blink .75s linear infinite;
+  -o-animation: fa-blink .75s linear infinite;
+  animation: fa-blink .75s linear infinite;
+}
+.formulario-sn{
+    margin: 30px;
+    padding: 30px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 7px 25px rgb(53, 117, 232, 0.8);
+    color: #3575E8;
+    font-size: 30px;
+    font-weight: 600;
+    width: 40%;
+}
+.produto
+{
+    margin: 30px;
+    padding: 30px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 7px 25px rgb(53, 117, 232, 0.8);
+    color: #3575E8;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+@media (max-width: 1500px)
+{
+    .scaleDiv{
+        transform: scale(0.7);
+    }
+}

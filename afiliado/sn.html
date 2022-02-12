@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Infoprodutos</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/style.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+
+        <div style="display:flex; justify-content: center; align-items: center; height: 100vh; width:100%;">
+            <div class="formulario-sn">
+                
+                <div class="headerForm">
+                    <h2>Simples Nacional</h2>
+                </div>
+
+                <form id="formulario">
+                    <div style="display: flex;flex-direction: column;">
+
+                        <div style="display: flex; ">
+                            <label for="anexo">Selecione o Anexo</label>
+                            <Select id="anexo">
+                                <option  value="">Selecione...</option>
+                                <option  value="1">Anexo I</option>
+                                <option  value="2">Anexo II</option>
+                                <option  value="3">Anexo III</option>
+                                <option  value="4">Anexo IV</option>
+                                <option  value="5">Anexo V</option>
+                            </Select>
+                        </div>
+                        
+                        <label for="faturamento">RBT12</label>
+                        <input type="text" id="faturamento">
+                        <label for="receita">Receita Bruta Auferida no Mês</label>
+
+                    <input type="submit" value="Enviar">
+                </div>
+                </form>
+            
+            </div>
+            
+        </div>
+            <script>
+                var form = document.getElementById('formulario');
+                var anexo = document.getElementById('anexo');
+                var faturamento = document.getElementById('faturamento');
+                var receita = document.getElementById('receita');
+            
+                form.addEventListener('submit', function(e) {
+
+                    var fUm = 180000;
+
+                    var faixaUm = fUm.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+                    
+                    alert(faixaUm);
+                    if(anexo.value == 1)
+                    {
+                        alert("Estou no anexo 1");
+                        if(faturamento.value <= faixaUm){
+                            alert("Estou no anexo 1 e faixa 1");
+                        }
+                    }
+                    else if(anexo.value == 2)
+                    {
+                        alert("Estou no anexo 2");
+                    }
+                    else if(anexo.value == 3)
+                    {
+                        alert("Estou no anexo 3");
+                    }
+                    else if(anexo.value == 4)
+                    {
+                        alert("Estou no anexo 4");
+                    }
+                    else if(anexo.value == 5)
+                    {
+                        alert("Estou no anexo 5");
+                    }
+
+                    document.getElementById('receita').value = anexo.value ;
+            
+                    // impede o envio do form
+                    e.preventDefault();
+                    alert("Anexo: " + anexo.value + ", Faturamento: " +faturamento.value);
+                });
+            </script>
+    </body>
+
+</html>
+

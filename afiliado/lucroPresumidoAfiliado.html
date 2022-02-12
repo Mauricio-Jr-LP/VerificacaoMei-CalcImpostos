@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Infoprodutos</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/style.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+
+    <body style="display: flex; flex-direction: column; justify-content: center;">
+  
+        <a href="index.html"><h2 style="text-align: center; color: #3575E8; font-weight: 600; margin-top: 100px; margin-bottom: -100px;">Afiliado - Lucro Presumido</h2>
+        </a>
+
+        <div style="display:grid; grid-template-columns: repeat(1,1fr); align-items: center; height: 75vh; align-content: space-evenly;">
+
+            <div class="produto">
+
+                <div class="headerForm">
+                    <h2>Comissão de vendas</h2>
+                </div>
+
+                <div class="formItem">
+                    <label for="faturamento">Faturamento</label>
+                    <input type="text" id="vendas">
+                </div>
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" style="margin-top: 20px;" onclick="calc()">
+                    Calcular
+                </button>
+                    
+            </div>
+
+        </div>
+        
+  
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 1000px;" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Afiliado - Lucro Presumido</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="faturamentoModalDiv">
+                            <div class="divEbook"> 
+
+                                <h1 style="font-weight: bold;" class="faturamentoModalTexto"><span style="color: #3575E8 !important;" >Comissão de vendas</span></h1>
+                                <h1 style="font-weight: bold;" class="faturamentoModalTexto">Faturamento informado: <span id="vendasInfoModal"></span></h1>
+                                <h1 style="font-weight: bold;" class="faturamentoModalTexto">Alíquota: <span id="vendasCalcModal"></span></h1>
+                                <h1 style="font-weight: bold; border-bottom: 1px solid #3575e838; margin-bottom: 24px; padding-bottom: 10px;" class="faturamentoModalTexto">Imposto: <span style="color: rgb(155, 17, 30)" id="vendasModal"></span></h1>
+
+                                <h1 class="faturamentoModalTexto"><span style="color: #3575E8 !important;" >Alíquota Efetiva</span></h1>
+                                <h1 style="font-weight: bold;" class="faturamentoModalTexto">Valor: <span style="color: rgb(155, 17, 30)"    id="AlíquotaModal" ></span></h1>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Entendido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+                
+            var vendas = document.getElementById('vendas');
+            
+            function calc(){
+                
+                var irpj = 4.8/100;
+                var csll = 2.88/100;
+                var pis = 0.65/100;
+                var cofins = 3/100;
+                var iss = 2/100;
+
+                if(vendas.value == "")
+                    vendas.value = 0;
+               
+                const strNum3 = vendas.value.replace(/[^0-9]/g, '')
+                var vendasBr = strNum3;
+                vendasBr = parseFloat(vendasBr);
+                
+                var faturamentoVendas = 0;
+                faturamentoVendas = (irpj + csll + pis + cofins + iss) * vendasBr;
+                var faturamentoVendasReal = faturamentoVendas.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+                //alert('Cursos Especificos: ' + faturamentoVendasReal);
+
+                var irpjPor = 4.8;
+                var csllPor = 2.88;
+                var pisPor = 0.65;
+                var cofinsPor = 3;
+                var issPor = 2;
+
+                var vendasCalc = irpjPor + csllPor + pisPor + cofinsPor + iss;
+
+                var Alíquota = (faturamentoVendas  / vendasBr) * 100;
+
+                var vendasInfo = vendasBr.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+
+                document.getElementById("vendasInfoModal").innerHTML = vendasInfo;
+                document.getElementById("vendasCalcModal").innerHTML = "IRPJ(4,8%) + CSLL(2,88%) + PIS(0,65%) + COFINS(3%) + ISS(2%), que resulta em uma porcentagem de " + vendasCalc.toFixed(2)+ "%";
+                document.getElementById("vendasModal").innerHTML = faturamentoVendasReal;
+
+                document.getElementById("AlíquotaModal").innerHTML = Alíquota.toFixed(2) +"%";
+
+                //porcentagem da Alíquota total
+                
+            }
+
+        </script>
+
+    </body>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</html>
+

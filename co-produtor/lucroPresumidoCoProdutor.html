@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Infoprodutos</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/style.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+
+    <body style="display: flex; flex-direction: column; justify-content: center;">
+  
+        <a href="index.html"><h2 style="text-align: center; color: #3575E8; font-weight: 600; margin-top: 100px; margin-bottom: -100px;">Produtor - Lucro Presumido</h2>
+        </a>
+        <div style="display:grid; grid-template-columns: repeat(3,1fr); align-items: center; height: 75vh; align-content: space-evenly;">
+        
+            <div class="produto">
+                    
+                <div class="headerForm">
+                    <h2 >E-BOOK</h2>
+                </div>
+
+                <div class="formItem">
+                    <label for="faturamento">Faturamento</label>
+                    <input type="text" id="ebook">
+                </div>
+                    
+            </div>
+            <div class="produto">
+                    
+
+                <div class="headerForm">
+                    <h2>Curso Online Geral</h2>
+                </div>
+
+                <div class="formItem">
+                    <label for="faturamento">Faturamento</label>
+                    <input type="text" id="cursogeral">
+                </div>
+                    
+            </div>
+            <div class="produto">
+                    
+
+                <div class="headerForm">
+                    <h2>Curso Online Especifico</h2>
+                </div>
+
+                <div class="formItem">
+                    <label for="faturamento">Faturamento</label>
+                    <input type="text" id="cursoespecifico">
+                </div>
+                    
+            </div>
+
+        </div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="calc()">
+            Calcular
+        </button>
+  
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 1000px;" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Co-Produtor - Lucro Presumido</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="faturamentoModalDiv">
+                            <div class="divEbook"> 
+
+                                <h1 class="faturamentoModalTexto"><span style="color: #3575E8 !important;">E-book</span></h1>
+                                <h1 style="font-weight: bold;" class="faturamentoModalTexto">Faturamento informado: <span id="ebookInfoModal" ></span></h1>
+                                <h1 style="font-weight: bold;" class="faturamentoModalTexto">Alíquota: <span id="ebookCalcModal"></span></h1>
+                                <h1 style="border-bottom: 1px solid #3575e838; margin-bottom: 24px; padding-bottom: 10px;font-weight: bold;" class="faturamentoModalTexto">Imposto: <span style="color: rgb(155, 17, 30)" id="ebookModal"></span></h1>
+
+                                <h1 style="font-weight: bold;" class="faturamentoModalTexto"><span style="color: #3575E8 !important;">Curso Online Geral</span></h1>
+                                <h1 style="font-weight: bold;" class="faturamentoModalTexto">Faturamento informado: <span id="cursoGeralInfoModal" ></span></h1>
+                                <h1 style="font-weight: bold;" class="faturamentoModalTexto">Alíquota: <span id="cursoGeralCalcModal"></span></h1>
+                                <h1 style="border-bottom: 1px solid #3575e838; margin-bottom: 24px; padding-bottom: 10px;font-weight: bold;" class="faturamentoModalTexto">Imposto: <span style="color: rgb(155, 17, 30)" id="cursoGeralModal"></span></h1>
+
+                                <h1 style="font-weight: bold;" class="faturamentoModalTexto"><span style="color: #3575E8 !important;">Curso Online Especifico</span></h1>
+                                <h1 style="font-weight: bold;" style="font-weight: bold;" class="faturamentoModalTexto">Faturamento informado: <span id="cursoEspecificoInfoModal" ></span></h1>
+                                <h1 style="font-weight: bold;" class="faturamentoModalTexto">Alíquota: <span id="cursoEspecificoCalcModal"></span></h1>
+                                <h1 style="border-bottom: 1px solid #3575e838; margin-bottom: 24px; padding-bottom: 10px;font-weight: bold;" class="faturamentoModalTexto">Imposto: <span  style="color: rgb(155, 17, 30)" id="cursoEspecificoModal"></span></h1>
+
+                                <h1 class="faturamentoModalTexto"><span style="color: #3575E8 !important;">Alíquota Efetiva</span></h1>
+                                <h1 style="font-weight: bold;" class="faturamentoModalTexto">Valor: <span style="color: rgb(155, 17, 30)" id="AlíquotaModal" ></span></h1>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Entendido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+                
+            var ebook = document.getElementById('ebook');
+            var cursogeral = document.getElementById('cursogeral');
+            var cursoespecifico = document.getElementById('cursoespecifico');
+            
+           
+        
+            function calc(){
+                
+                var irpj = 1.2/100;
+                var csll = 1.08/100;
+                var pis = 0.65/100;
+                var cofins = 3/100;
+                var irpj2 = 4.8/100;
+                var csll2 = 2.88/100;
+                var cofins2 = 3/100;
+                var iss = 5/100;
+
+                if(ebook.value == "")
+                    ebook.value = 0;
+                if(cursogeral.value == "")
+                    cursogeral.value = 0;
+                if(cursoespecifico.value == "")
+                    cursoespecifico.value = 0;
+                
+                const strNum = ebook.value.replace(/[^0-9]/g, '')
+                var ebookBr = strNum;
+                ebookBr = parseFloat(ebookBr);
+
+                const strNum2 = cursogeral.value.replace(/[^0-9]/g, '')
+                var cursogeralBr = strNum2;
+                cursogeralBr = parseFloat(cursogeralBr);
+               
+                const strNum3 = cursoespecifico.value.replace(/[^0-9]/g, '')
+                var cursoespecificoBr = strNum3;
+                cursoespecificoBr = parseFloat(cursoespecificoBr);
+
+                var faturamentoEbook = 0;
+                faturamentoEbook = (irpj + csll) * ebookBr;
+                var faturamentoEbookReal = faturamentoEbook.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+                //alert('Ebook: ' + faturamentoEbookReal);
+                
+                var faturamentoCursosGerais = 0;
+                faturamentoCursosGerais = (irpj + csll + pis + cofins) * cursogeralBr;
+                var faturamentoCursosGeraisReal = faturamentoCursosGerais.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+                //alert('Cursos Gerais: ' + faturamentoCursosGeraisReal);
+                
+                var faturamentoCursoEspecifico = 0;
+                faturamentoCursoEspecifico = (irpj2 + csll2 + pis + cofins + iss) * cursoespecificoBr;
+                var faturamentoCursoEspecificoReal = faturamentoCursoEspecifico.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+                //alert('Cursos Especificos: ' + faturamentoCursoEspecificoReal);
+
+                var irpjPor = 1.2;
+                var csllPor = 1.08;
+                var pisPor = 0.65;
+                var cofinsPor = 3;
+                var irpj2Por = 4.8;
+                var csll2Por = 2.8;
+                var issPor = 5;
+
+                var ebookCalc = irpjPor + csllPor;
+                var cursoGeralCalc = irpjPor + csllPor + pisPor + cofinsPor;
+                var cursoEspecificoCalc = irpj2Por + csll2Por + pisPor + cofinsPor;
+
+                var faturamentoTotal = ebookBr + cursogeralBr + cursoespecificoBr;
+
+                var Alíquota = ((faturamentoCursoEspecifico + faturamentoCursosGerais + faturamentoEbook) / faturamentoTotal) * 100;
+
+                var ebookInfo = ebookBr.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+                var cursoGeralInfo = cursogeralBr.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+                var cursoEspecificoInfo = cursoespecificoBr.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+
+
+                document.getElementById("ebookInfoModal").innerHTML = ebookInfo;
+                document.getElementById("ebookCalcModal").innerHTML = "IRPJ(1,2%) + CSLL(1,08%), que resulta em uma porcentagem de " + ebookCalc.toFixed(2) + "%";
+                document.getElementById("ebookModal").innerHTML = faturamentoEbookReal;
+
+                document.getElementById("cursoGeralInfoModal").innerHTML = cursoGeralInfo;
+                document.getElementById("cursoGeralCalcModal").innerHTML = "IRPJ(1,2%) + CSLL(1,08%) + PIS(0,65%) + COFINS(3%), que resulta em uma porcentagem de " + cursoGeralCalc.toFixed(2) + "%";
+                document.getElementById("cursoGeralModal").innerHTML = faturamentoCursosGeraisReal;
+
+                document.getElementById("cursoEspecificoInfoModal").innerHTML = cursoEspecificoInfo;
+                document.getElementById("cursoEspecificoCalcModal").innerHTML = "IRPJ(4,8%) + CSLL(2,8%) + PIS(0,65%) + COFINS(3%) + ISS(5%), que resulta em uma porcentagem de " + cursoEspecificoCalc.toFixed(2)+ "%";
+                document.getElementById("cursoEspecificoModal").innerHTML = faturamentoCursoEspecificoReal;
+
+                document.getElementById("AlíquotaModal").innerHTML = Alíquota.toFixed(2) +"%";
+
+                //porcentagem da Alíquota total
+                
+            }
+
+        </script>
+
+    </body>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</html>
+
